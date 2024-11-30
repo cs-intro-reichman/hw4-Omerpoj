@@ -23,8 +23,7 @@ public class KeywordsDetector {
     public static void detectAndPrint(String[] sentences, String[] keywords) {
         for(int i = 0;i < sentences.length;i++){
             for(int j = 0;j < keywords.length;j++){
-                System.out.println(sentences[i]+" "+keywords[j]);
-                if (contains(sentences[i] , keywords[j])) {
+                if (contains(sentences[i] , keywords[j]) ) {
                     System.out.println(keywords[j]);
                 }
             }
