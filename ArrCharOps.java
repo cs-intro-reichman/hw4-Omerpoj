@@ -18,7 +18,7 @@ public class ArrCharOps {
         System.out.println(lastIndexOf(arr1, 'l'));
         System.out.println(concat(arr3, arr4));
         System.out.println(subArray(arr2, 2, 9));
-        System.out.println(subArray(arr5, 9, 15));
+        System.out.println(subArray(arr5, 0, 8));
         System.out.println(compareTo("abcd", "abcd"));
         System.out.println(compareTo("abc", "abcd"));
         System.out.println(compareTo("abw", "abcd"));
@@ -55,6 +55,7 @@ public class ArrCharOps {
         if (arr1.length != arr2.length) {
             return false;
         }
+        
         for(int i = 0;i < arr1.length;i++){
             if ((int)arr1[i] != (int)arr2[i]) {
                 return false;
@@ -119,9 +120,9 @@ public class ArrCharOps {
      *  characters containing the characters "urge".
      */     
     public static char[] subArray(char[] arr, int beginIndex, int endIndex) {
-        char[] finalarr = new char[endIndex - beginIndex + 1];
+        char[] finalarr = new char[endIndex - beginIndex];
         int index = 0;
-        for(int i = beginIndex;i <= endIndex && i != 16;i++){
+        for(int i = beginIndex;i <= endIndex - 1;i++){
             finalarr[index] = arr[i];
             index++;
         }
@@ -137,8 +138,9 @@ public class ArrCharOps {
      */
     public static long hashCode(char[] arr) {
         long sum = 0;
+        int n = arr.length;
         for(int i = 0;i < arr.length;i++){
-            sum += ((int)(arr[i]))*(Math.pow(10, i));
+            sum += ((int)(arr[i]))*(Math.pow(7, n - (i + 1)));
         }
         return sum;
     }
@@ -172,8 +174,6 @@ public class ArrCharOps {
         if (str1 == "" || str2 == "") {
             return -2;
         }
-        str1 = str1.toLowerCase();
-        str2 = str2.toLowerCase();
         if (isAnagram(str1, str2)) {
             return 0;
         }
@@ -191,8 +191,6 @@ public class ArrCharOps {
         if (str1.length() != str2.length()) {
             return false;
         }
-		str1 = preProcess(str1);
-		str2 = preProcess(str2);
 		String mid1 = "";
 		String mid2 = "";
 		for(int i = 0;i < str1.length();i++){
