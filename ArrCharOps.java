@@ -162,17 +162,23 @@ public class ArrCharOps {
         }
         str1 = str1.toLowerCase();
         str2 = str2.toLowerCase();
-        for(int i = 0;i < Math.max(str1.length(), str2.length()) && str1.charAt(i + 1) != ' ' || str2.charAt(i + 1) != ' ';i++){
-            if (isAnagram(str1, str2)) {
-                return 0;
-            }
+        if (isAnagram(str1, str2)) {
+            return 0;
+        }
+        for(int i = 0;i < Math.min(str1.length(), str2.length());i++){
             if ((int)str2.charAt(i) > (int)str1.charAt(i)) {
                 return -1;
             }
         }
+        if (str2.length() > str1.length()) {
+            return -1;
+        }
         return 1;
     }
     public static boolean isAnagram(String str1, String str2) {
+        if (str1.length() != str2.length()) {
+            return false;
+        }
 		str1 = preProcess(str1);
 		str2 = preProcess(str2);
 		String mid1 = "";
