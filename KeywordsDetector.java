@@ -24,7 +24,7 @@ public class KeywordsDetector {
         for(int i = 0;i < sentences.length;i++){
             for(int j = 0;j < keywords.length;j++){
                 System.out.println(contains(sentences[i],keywords[j]));
-                if (contains(sentences[i],keywords[j])) {
+                if (contains(sentences[i] , keywords[j])) {
                     System.out.print("hi");
                     System.out.println(keywords[j]);
                 }
