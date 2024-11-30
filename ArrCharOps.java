@@ -16,7 +16,7 @@ public class ArrCharOps {
         System.out.println(lastIndexOf(arr1, 'l'));
         System.out.println(concat(arr3, arr4));
         System.out.println(subArray(arr2, 2, 9));
-        System.out.println(subArray(arr5, 0, 8));
+        System.out.println(subArray(arr5, 9, 16));
         System.out.println(compareTo("abcd", "abcd"));
         System.out.println(compareTo("abc", "abcd"));
         System.out.println(compareTo("abw", "abcd"));
@@ -47,7 +47,7 @@ public class ArrCharOps {
      *  returns true; Otherwise returns false.
      */
     public static boolean equals(char[] arr1, char[] arr2) {
-        if (arr1.length != arr2.length) {
+        if (arr1.length > arr2.length) {
             return false;
         }
         for(int i = 0;i < arr1.length;i++){
@@ -115,7 +115,7 @@ public class ArrCharOps {
     public static char[] subArray(char[] arr, int beginIndex, int endIndex) {
         char[] finalarr = new char[endIndex - beginIndex +1];
         for(int i = 0;i < endIndex - beginIndex + 1;i++){
-            finalarr[i] = arr[beginIndex+i];
+            finalarr[i] = arr[beginIndex+i - 1];
         }
         return finalarr;
     }
