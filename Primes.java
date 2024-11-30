@@ -2,7 +2,7 @@ public class Primes {
     public static void main(String[] args) {
         int n = Integer.parseInt(args[0]);
         int primeCounter = 0;
-        for(int i = 3;i <= n;i++){
+        for(int i = 2;i <= n;i++){
             if (isPrime(i)) {
                 System.out.println(i);
                 primeCounter++;
@@ -14,7 +14,10 @@ public class Primes {
     public static boolean isPrime(int num){
         int original = num;
         num--;
-        while (num > 2) {
+        if (num == 2) {
+            return true;
+        }
+        while (num >= 2) {
             if (original % num == 0) {
                 return false;
             }
