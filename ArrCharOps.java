@@ -16,7 +16,7 @@ public class ArrCharOps {
         System.out.println(lastIndexOf(arr1, 'l'));
         System.out.println(concat(arr3, arr4));
         System.out.println(subArray(arr2, 2, 9));
-        System.out.println(subArray(arr5, 9, 16));
+        System.out.println(subArray(arr5, 9, 15));
         System.out.println(compareTo("abcd", "abcd"));
         System.out.println(compareTo("abc", "abcd"));
         System.out.println(compareTo("abw", "abcd"));
@@ -98,11 +98,12 @@ public class ArrCharOps {
     */
     public static char[] concat(char[] arr1, char[] arr2) {
         char[] finalarr = new char[arr1.length + arr2.length];
+        int index = arr1.length;
         for(int i = 0;i < arr1.length;i++){
             finalarr[i] = arr1[i];
         }
         for(int i = 0;i < arr2.length;i++){
-            finalarr[i + arr1.length] = arr2[i];
+            finalarr[i + index] = arr2[i];
         }
         return finalarr;
     }
@@ -113,9 +114,11 @@ public class ArrCharOps {
      *  characters containing the characters "urge".
      */     
     public static char[] subArray(char[] arr, int beginIndex, int endIndex) {
-        char[] finalarr = new char[endIndex - beginIndex +1];
-        for(int i = 0;i < endIndex - beginIndex + 1;i++){
-            finalarr[i] = arr[beginIndex+i - 1];
+        char[] finalarr = new char[endIndex - beginIndex + 1];
+        int index = 0;
+        for(int i = beginIndex;i <= endIndex && i != 16;i++){
+            finalarr[index] = arr[i];
+            index++;
         }
         return finalarr;
     }
