@@ -38,6 +38,9 @@ public class MyString {
         while (str1.charAt(index) != str2.charAt(0) && index < str2.length()) {
             index++;
         }
+        if (str1.length() - index < str2.length()) {
+            return false;
+        }
         for(int i = 0;i < str2.length();i++){
             if (str1.charAt(index + i) != str2.charAt(i)) {
                 return false;                
