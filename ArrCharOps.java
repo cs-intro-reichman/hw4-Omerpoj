@@ -3,6 +3,7 @@
 public class ArrCharOps {
     public static void main(String[] args) {
         String str = "clearly";
+        char[] arr0 = {};
         char[] arr1 = {'c','l','e','a','r','l','y'};
         char[] arr2 = {'U','n','d','e','r','s','t', 'o', 'o', 'd'};
         char[] arr3 = {'I',' ','a','m',' ','t','h','e',' '};
@@ -10,6 +11,7 @@ public class ArrCharOps {
         char[] arr5 = {'s','o','m','e','b','o','d','y',' ','s','t','o','p',' ','m','e'};
         System.out.println(str);  // Prints the string
         println(arr1);            // Prints an array of characters
+        System.out.println(arr0.length);
         System.out.println(charAt(arr1,2));      
         System.out.println(indexOf(arr1,'l'));  
         System.out.println(indexOf(arr1,'l',3)); 
@@ -47,11 +49,14 @@ public class ArrCharOps {
      *  returns true; Otherwise returns false.
      */
     public static boolean equals(char[] arr1, char[] arr2) {
-        if (arr1.length > arr2.length) {
+        if (arr1.length == 0 && arr2.length == 0) {
+            return true;
+        }
+        if (arr1.length != arr2.length) {
             return false;
         }
         for(int i = 0;i < arr1.length;i++){
-            if (arr1[i] != arr2[2]) {
+            if ((int)arr1[i] != (int)arr2[i]) {
                 return false;
             }
         }

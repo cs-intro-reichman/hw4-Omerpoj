@@ -41,6 +41,7 @@ public class TesterArrayCharOps {
         boolean test1 = !ArrCharOps.equals(arr1, arr2);
         boolean test2 = ArrCharOps.equals(arr1, arr1);
         boolean test3 = ArrCharOps.equals(empty_arr, empty_arr);
+        System.out.println(test1+" "+test2+" "+test3);
 
         int passed = (test1 ? 1 : 0) + (test2 ? 1 : 0) + (test3 ? 1 : 0);
         String verdict = passed == num_tests ? "(Passed)": "Failed";
