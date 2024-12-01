@@ -3,16 +3,22 @@
 public class ArrCharOps {
     public static void main(String[] args) {
         String str = "clearly";
+        char[] arr0 = {};
         char[] arr1 = {'c','l','e','a','r','l','y'};
         char[] arr2 = {'U','n','d','e','r','s','t', 'o', 'o', 'd'};
+        char[] arr3 = {'I',' ','a','m',' ','t','h','e',' '};
+        char[] arr4 = {'e','g','g','m','a','n'};
+        char[] arr5 = {'s','o','m','e','b','o','d','y',' ','s','t','o','p',' ','m','e'};
         System.out.println(str);  // Prints the string
         println(arr1);            // Prints an array of characters
+        System.out.println(arr0.length);
         System.out.println(charAt(arr1,2));      
         System.out.println(indexOf(arr1,'l'));  
         System.out.println(indexOf(arr1,'l',3)); 
         System.out.println(lastIndexOf(arr1, 'l'));
-        System.out.println(concat(arr1, arr2));
+        System.out.println(concat(arr3, arr4));
         System.out.println(subArray(arr2, 2, 9));
+        System.out.println(subArray(arr5, 0, 8));
         System.out.println(compareTo("abcd", "abcd"));
         System.out.println(compareTo("abc", "abcd"));
         System.out.println(compareTo("abw", "abcd"));
@@ -36,30 +42,48 @@ public class ArrCharOps {
     /** Returns the char value at the specified index. Assume that the array is non-empty.
      */
     public static char charAt(char[] arr, int index) {
-        // Replace the following statement with your code
-        return 0;
+        return arr[index];
     }
 
     /** If the two arrays have the same value in every index, 
      *  returns true; Otherwise returns false.
      */
     public static boolean equals(char[] arr1, char[] arr2) {
-        // Replace the following statement with your code
-        return false;
+        if (arr1.length == 0 && arr2.length == 0) {
+            return true;
+        }
+        if (arr1.length != arr2.length) {
+            return false;
+        }
+        
+        for(int i = 0;i < arr1.length;i++){
+            if ((int)arr1[i] != (int)arr2[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /** Returns the index within the given array of the first occurrence of the given character.
      *  If no such character is found, returns -1.
      */
     public static int indexOf(char[] arr, char ch) {
-        // Replace the following statement with your code
+        for(int i = 0;i < arr.length;i++){
+            if (arr[i] == ch) {
+                return i;
+            }
+        }
         return -1;
     }
 
     /** Same as indexOf(char[], char), but starts the search in the given index.
      */
     public static int indexOf(char[] arr, char ch, int fromIndex) {
-        // Replace the following statement with your code
+        for(int i = fromIndex;i < arr.length;i++){
+            if (arr[i] == ch) {
+                return i;
+            }
+        }
         return -1;
     }
 
@@ -67,15 +91,27 @@ public class ArrCharOps {
      *  If no such character is found, returns -1.
      */
     public static int lastIndexOf(char[] arr, char ch) {
-        // Replace the following statement with your code
-        return -1;
+        int index = -1;
+        for(int i = 0;i < arr.length;i++){
+            if (arr[i] == ch) {
+                index = i;
+            }
+        }
+        return index;
     }
 
     /* Returns an array which is the concatanation of the two given arrays.
     */
     public static char[] concat(char[] arr1, char[] arr2) {
-        // Replace the following statement with your code
-        return null;
+        char[] finalarr = new char[arr1.length + arr2.length];
+        int index = arr1.length;
+        for(int i = 0;i < arr1.length;i++){
+            finalarr[i] = arr1[i];
+        }
+        for(int i = 0;i < arr2.length;i++){
+            finalarr[i + index] = arr2[i];
+        }
+        return finalarr;
     }
 
     /** Returns a new array that can be described as a sub-array of this array.
@@ -84,8 +120,13 @@ public class ArrCharOps {
      *  characters containing the characters "urge".
      */     
     public static char[] subArray(char[] arr, int beginIndex, int endIndex) {
-        // Replace the following statement with your code
-        return null;
+        char[] finalarr = new char[endIndex - beginIndex];
+        int index = 0;
+        for(int i = beginIndex;i <= endIndex - 1;i++){
+            finalarr[index] = arr[i];
+            index++;
+        }
+        return finalarr;
     }
 
      /** Returns a single integer that represents the given array. This integer is sometimes 
@@ -96,8 +137,12 @@ public class ArrCharOps {
      *  The hash value of an empty array is zero.
      */
     public static long hashCode(char[] arr) {
-        // Replace the following statement with your code
-        return 0;
+        long sum = 0;
+        int n = arr.length;
+        for(int i = 0;i < arr.length;i++){
+            sum += ((int)(arr[i]))*(Math.pow(7, n - (i + 1)));
+        }
+        return sum;
     }
 
     /**
@@ -126,7 +171,69 @@ public class ArrCharOps {
      *         return -2 if there is an error with the input.
      */
     public static int compareTo(String str1, String str2) {
-        // Replace the following statement with your code
-        return 0;
+        if (str1 == "" || str2 == "") {
+            return -2;
+        }
+        if (isAnagram(str1, str2)) {
+            return 0;
+        }
+        for(int i = 0;i < Math.min(str1.length(), str2.length());i++){
+            if ((int)str2.charAt(i) > (int)str1.charAt(i)) {
+                return -1;
+            }
+        }
+        if (str2.length() > str1.length()) {
+            return -1;
+        }
+        return 1;
     }
+    public static boolean isAnagram(String str1, String str2) {
+        if (str1.length() != str2.length()) {
+            return false;
+        }
+		String mid1 = "";
+		String mid2 = "";
+		for(int i = 0;i < str1.length();i++){
+			if (str1.charAt(i) != ' ') {
+				mid1 += str1.charAt(i);
+			}
+		}
+		for(int i = 0;i < str2.length();i++){
+			if (str2.charAt(i) != ' ') {
+				mid2 += str2.charAt(i);
+			}
+		}
+		str1 = mid1;
+		str2 = mid2;
+		for(int i = 0;i < str1.length();i++)
+		{
+			int counter1 = 0;
+			int counter2 = 0;
+			for(int j = 0;j < str1.length();j++){
+				if ((str1.charAt(i) == str1.charAt(j))) {
+					counter1++;
+				}
+				if ((str1.charAt(i) == str2.charAt(j))) {
+					counter2++;
+				}
+			}
+			if (counter1 != counter2) {
+				
+				return false;
+			}
+		}
+		return true;
+	}
+    public static String preProcess(String str) {
+		String finalstr = "";
+		str = str.toLowerCase();
+		for(int i = 0;i<str.length();i++){
+			if (str.charAt(i) > 65 && str.charAt(i) < 122 || str.charAt(i) == ' ') {
+				finalstr += str.charAt(i);
+			}
+		}
+
+		
+		return finalstr;
+	} 
 }
