@@ -21,37 +21,18 @@ public class KeywordsDetector {
     // Iterates through all the sentences.
     // If a sentence contains one or more of the kewords, prints it.
     public static void detectAndPrint(String[] sentences, String[] keywords) {
+        boolean isClice = false;
         for(int i = 0;i < sentences.length;i++){
+            isClice = false;
             for(int j = 0;j < keywords.length;j++){
-                if (contains(sentences[i] , keywords[j])) {
-                    System.out.println(keywords[j]);
+                if (sentences[i].indexOf(keywords[j], 0) != 1) {
+                    isClice = true;
                 }
+            }
+            if (isClice) {
+                System.out.println(sentences[i]);
             }
         }
     }
-        /** If str1 contains str2, returns true; otherwise returns false. */
-        public static boolean contains(String str1, String str2) {
-            if (str2 == "") {
-                return true;
-            }
-            if (str1 == "" && str2 != "") {
-                return false;
-            }
-            int index = 0;
-            if (str2.length() > str1.length()) {
-                return false;
-            }
-            while (str1.charAt(index) != str2.charAt(0) && index < str2.length()) {
-                index++;
-            }
-            if (str1.length() - index < str2.length()) {
-                return false;
-            }
-            for(int i = 0;i < str2.length();i++){
-                if (str1.charAt(index + i) != str2.charAt(i)) {
-                    return false;                
-                }
-            }
-            return true;
-        }
+
 }
